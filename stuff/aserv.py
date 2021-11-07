@@ -73,8 +73,31 @@ server_socket.listen()
 print("server up")
 client_socket, client_adress = server_socket.accept()
 print("client connected")
-data = client_socket.recv(1024).decode()
-print("client sent " + data)
-data = data.split()
-
-
+while True:
+    data = client_socket.recv(1024).decode()
+    print("client sent " + data)
+    data = data.split()
+    if data[0].upper() == "EXEC":
+        execute(data[1])
+    elif data[0].upper() == "DIR":
+        send(dir(data[1]))
+    elif data[0].upper() == "COPY":
+        copy(data[1], data[2])
+    elif data[0].upper() == "SCREENSHOT":
+        client_socket.send("pic".encode())
+        filep = screen_shootin()
+        try:
+            scb = open(filep, 'rb')
+            scn = scb.read()
+            client_socket.send(scn)
+        except Exception as e:
+            send(e)
+            print(e)
+    elif data[0].upper() == "DELETE":
+        delete(data[1])
+    elif data[0].upper() == "EXIT":
+        break
+    else:
+        print("sorry not a valid command")
+        send("sorry not a valid command")
+escape()
