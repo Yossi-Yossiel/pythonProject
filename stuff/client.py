@@ -1,11 +1,11 @@
 import socket
 
-
+ip = input("enter the desired ip")
 my_socket = socket.socket()
-my_socket.connect(('75.119.145.193',8970))
-
-
-
+try:
+    my_socket.connect((ip, 8970))
+except Exception as e:
+    print(e)
 
 while True:
     inp = input("system is UP! for help type help PLEASE REMEMBER TO USE FULL PATH WHEN MESSING AROUND WITH FILES")
