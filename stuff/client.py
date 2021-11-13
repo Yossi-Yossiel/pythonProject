@@ -21,6 +21,10 @@ while connected == True:
     elif data == "pic":
         scb = my_socket.recv(9999999999)
         inp = input("enter the diretory you want to save")
+        filename = input("now enter the picture name")+".png"
+        inpList = inp.split("\\")
+        if not inpList[-1].find(".png"):
+            inp += filename
         try:
             file = open(inp,'wb')
             file.write(scb)
