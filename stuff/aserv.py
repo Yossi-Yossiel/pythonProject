@@ -91,8 +91,7 @@ while True:
             scn = scb.read()
             client_socket.send(scn)
         except Exception as e:
-            send(e)
-            print(e)
+            error(e)
     elif data[0].upper() == "DELETE":
         delete(data[1])
     elif data[0].upper() == "EXIT":
