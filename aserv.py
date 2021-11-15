@@ -26,7 +26,6 @@ def send(datas):
     try:
         client_socket.send(datas.encode())
     except Exception as e:
-        client_socket.send(str(e).encode())
         print(e)
 
 
@@ -80,11 +79,17 @@ print("server up")
 client_socket, client_adress = server_socket.accept()
 print("client connected")
 helpFile = "help.txt"
-helpOpen = open(helpFile)
-helpRead = helpOpen.read()
+try:
+    helpOpen = open(helpFile)
+    helpRead = helpOpen.read()
+except Exception as e:
+    error(e)
 help(helpRead)
 while True:
-    data = client_socket.recv(1024).decode()
+    try:
+        data = client_socket.recv(1024).decode()
+    except Exception as e:
+        break
     print("client sent " + data)
     data = data.split()
     if data[0].upper() == "EXEC":
