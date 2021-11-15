@@ -7,6 +7,12 @@ import pyautogui
 def error(e):
     print(e)
     send(e)
+
+def help(helpFile):
+    print(helpFile)
+    send(helpFile)
+
+
 def execute(name):
     try:
         subprocess.call(name)
@@ -73,6 +79,10 @@ server_socket.listen()
 print("server up")
 client_socket, client_adress = server_socket.accept()
 print("client connected")
+helpFile = "help.txt"
+helpOpen = open(helpFile)
+helpRead = helpOpen.read()
+help(helpRead)
 while True:
     data = client_socket.recv(1024).decode()
     print("client sent " + data)
@@ -94,9 +104,11 @@ while True:
             error(e)
     elif data[0].upper() == "DELETE":
         delete(data[1])
+    elif data[0].upper() == "HELP":
+        help(helpRead)
     elif data[0].upper() == "EXIT":
         break
     else:
         print("sorry not a valid command")
-        send("sorry not a valid command")
+        send("sorry not a valid command, type \"HELP\" for help")
 escape()
