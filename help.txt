@@ -1,0 +1,25 @@
+help:
+
+DIR - shows the files and folders in a specified directory
+
+usage: DIR <Directory>
+
+EXEC - execute the specified app
+
+usage: EXEC <App path>
+
+SCREENSHOT - screenshotting the server screen and sends it to the client
+
+usage: SCREENSHOT
+
+DELETE - deletes the specified file/directory
+
+usage: DELETE <Path>
+
+COPY - Copies the specified file into the specified directory(including file name)
+
+usage: COPY <Filepath1> <Filepath2>
+
+HELP - shows this list
+
+usage: HELP
