@@ -10,9 +10,10 @@ try:
 except Exception as e:
     connected = False
     print(e)
+data = my_socket.recv(999999).decode()
+print(data)
 
 while connected == True:
-    # TODO help
     inp = input("system is UP! for help type help \n PLEASE REMEMBER TO USE FULL PATH WHEN MESSING AROUND WITH FILES")
     my_socket.send(inp.encode())
     data = my_socket.recv(1024).decode()
@@ -21,7 +22,10 @@ while connected == True:
     elif data == "pic":
         scb = my_socket.recv(9999999999)
         inp = input("enter the diretory you want to save")
-        filename = input("now enter the picture name")+".png"
+        filename = input("now enter the picture name ")
+        filelst = filename.split(".")
+        if not filelst[-1].find("png"):
+            filename + ".png"
         inpList = inp.split("\\")
         if not inpList[-1].find(".png"):
             inp += filename
