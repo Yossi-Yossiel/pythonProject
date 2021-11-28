@@ -35,7 +35,7 @@ while connected == True:
     if data == "close" or data == False:
         break
     elif data == "pic":
-        scb = my_socket.recv(9999999999)
+        scb = recv(9999999999)
         inp = input("enter the diretory you want to save")
         filename = input("now enter the picture name ")
         filelst = filename.split(".")

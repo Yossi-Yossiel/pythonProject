@@ -92,11 +92,10 @@ while True:
         break
     print("client sent " + data)
     data = data.split()
-    if len(data) <= 1 and data[0].upper() != "SCREENSHOT":
+    if len(data) <= 1 and data[0].upper() != "SCREENSHOT" and data[0].upper() != "DIR" and data[0].upper() != "HELP":
         error("sorry not a valid command")
         continue
     if data[0].upper() == "EXEC":
-
         send(execute(data[1]))
     elif data[0].upper() == "DIR":
         send(dir(data[1]))
