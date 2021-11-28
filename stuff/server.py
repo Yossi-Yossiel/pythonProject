@@ -31,6 +31,8 @@ print(comm)
 outp = ""
 ischecking = True
 while ischecking:
+    if len(comm) <=1 and comm[0].upper() != "SCREENSHOT":
+        break
     if comm[0] == "dir":
         x = dir(comm[1])
         for i in x:

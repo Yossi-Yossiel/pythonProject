@@ -12,12 +12,27 @@ except Exception as e:
     print(e)
 data = my_socket.recv(999999).decode()
 print(data)
+def send (data):
+    data = str(data)
+    try:
+        my_socket.send(data.encode())
+    except Exception as e:
+        print(e)
+        return False
+def recv(num):
+    num = int(num)
+    try:
+        d = my_socket.recv(num).decode()
+        return d
+    except Exception as e:
+        print(e)
+        return False
 
 while connected == True:
     inp = input("system is UP! for help type help \n PLEASE REMEMBER TO USE FULL PATH WHEN MESSING AROUND WITH FILES")
-    my_socket.send(inp.encode())
-    data = my_socket.recv(1024).decode()
-    if data == "close":
+    send(inp)
+    data = recv(1024)
+    if data == "close" or data == False:
         break
     elif data == "pic":
         scb = my_socket.recv(9999999999)
